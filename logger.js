@@ -1,63 +1,55 @@
-// NOVA Core Logger
-// Vercel / Serverless safe logger (console only)
+// NOVA Quantum Logger
+// Serverless-safe logging layer for Vercel
 
 function safeSerialize(value) {
   try {
     return JSON.stringify(value);
   } catch {
-    return JSON.stringify({ note: 'Unserializable payload' });
+    return JSON.stringify({ note: 'Payload could not be serialized' });
   }
-}
-
-function formatLog(level, event, payload) {
-  const timestamp = new Date().toISOString();
-
-  return {
-    timestamp,
-    level,
-    event,
-    payload
-  };
 }
 
 export function logEvent(event, payload = {}) {
   try {
-    const upperEvent = String(event || 'UNKNOWN_EVENT').toUpperCase();
+    const timestamp = new Date().toISOString();
+    const normalizedEvent = String(event || 'UNKNOWN_EVENT').toUpperCase();
 
-    let level = 'info';
+    const entry = {
+      dimension: 'NOVA_CORE',
+      timestamp,
+      event: normalizedEvent,
+      payload
+    };
+
+    const serialized = safeSerialize(entry);
+
     if (
-      upperEvent.includes('ERROR') ||
-      upperEvent.includes('FAIL') ||
-      upperEvent.includes('CRASH')
+      normalizedEvent.includes('ERROR') ||
+      normalizedEvent.includes('FAIL') ||
+      normalizedEvent.includes('CRASH')
     ) {
-      level = 'error';
-    } else if (
-      upperEvent.includes('WARN') ||
-      upperEvent.includes('BLOCK') ||
-      upperEvent.includes('ALERT')
-    ) {
-      level = 'warn';
-    }
-
-    const logEntry = formatLog(level, upperEvent, payload);
-    const serialized = safeSerialize(logEntry);
-
-    if (level === 'error') {
       console.error(serialized);
-    } else if (level === 'warn') {
-      console.warn(serialized);
-    } else {
-      console.log(serialized);
+      return;
     }
+
+    if (
+      normalizedEvent.includes('WARN') ||
+      normalizedEvent.includes('BLOCK') ||
+      normalizedEvent.includes('ALERT')
+    ) {
+      console.warn(serialized);
+      return;
+    }
+
+    console.log(serialized);
   } catch (error) {
     console.error(
       JSON.stringify({
+        dimension: 'NOVA_CORE',
         timestamp: new Date().toISOString(),
-        level: 'error',
         event: 'LOGGER_FAILURE',
         payload: {
-          originalEvent: event,
-          message: error?.message || 'Unknown logger error'
+          message: error?.message || 'Unknown logging failure'
         }
       })
     );
