@@ -1,12 +1,11 @@
 {
-  "name": "nova-agi-advanced",
+  "name": "nova-agi-core-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "Advanced defensive NOVA proto-AGI architecture",
-  "main": "src/server.js",
+  "description": "NOVA backend API",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "cli": "node src/cli.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@google/genai": "^1.26.0",
