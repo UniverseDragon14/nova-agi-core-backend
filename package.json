@@ -1,0 +1,16 @@
+{
+  "name": "nova-agi-advanced",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Advanced defensive NOVA proto-AGI architecture",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "cli": "node src/cli.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.26.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
