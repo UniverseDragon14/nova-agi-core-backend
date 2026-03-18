@@ -1,15 +1,28 @@
 {
-  "name": "nova-agi-core-backend",
-  "version": "1.0.0",
+  "name": "nova-7d-neural-core",
+  "version": "7.0.0",
+  "description": "Universal Dragon • Matrix Engine: ASLAM • 7th-Dimension Neural Intelligence Core",
   "type": "module",
-  "description": "NOVA backend API",
   "main": "server.js",
+  "author": "ASLAM (Matrix Engine)",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "dependencies": {
     "@google/genai": "^1.26.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.2"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "UNIVERSAL_DRAGON",
+    "NOVA_CORE",
+    "MATRIX_ENGINE_ASLAM",
+    "7D_AI"
+  ]
 }
+
