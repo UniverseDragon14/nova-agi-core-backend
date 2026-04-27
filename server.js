@@ -8,6 +8,17 @@ import { novaBoot } from './novaCore.js';
 // Serverless Ready • Quantum Secured
 // ==========================================
 
+// NOTE: Vercel Web Analytics is installed (@vercel/analytics)
+// This is a backend API service. Vercel Web Analytics tracks client-side
+// page views and requires browser-based rendering to function.
+// 
+// If you add frontend pages (HTML responses), integrate analytics like this:
+// import { inject } from '@vercel/analytics';
+// inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
+//
+// For API-only backends, consider using Vercel's Speed Insights or 
+// Observability tools for backend monitoring instead.
+
 const SYSTEM_IDENTITY = {
   BRAND: 'UNIVERSAL_DRAGON',
   MATRIX_ENGINE: 'ASLAM',
