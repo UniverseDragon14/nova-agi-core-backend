@@ -5,6 +5,10 @@
   "type": "module",
   "main": "server.js",
   "author": "ASLAM (Matrix Engine)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UniverseDragon14/nova-agi-core-backend.git"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
@@ -25,4 +29,3 @@
     "7D_AI"
   ]
 }
-
